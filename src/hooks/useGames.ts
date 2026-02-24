@@ -20,7 +20,8 @@ const useGames = (gameQuery: GameQuery) =>
     { 
       genres : gameQuery.genre?.id, 
       platforms: gameQuery.platform?.id,
-      ordering: gameQuery.sortOrder
+      ordering: gameQuery.sortOrder,
+      search: gameQuery.searchText
     }
   }, 
   [gameQuery] //dependency array 
