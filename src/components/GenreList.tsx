@@ -14,7 +14,7 @@ const GenreList = ({onSelectGenre, selectedGenre} : Props) => {
 
   if(error) return null;
   
-  if(isLoading) return <Spinner/>
+  if(isLoading) return <Spinner/> //not needed if not calling api
   
   return (
     <>
