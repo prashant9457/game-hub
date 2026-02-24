@@ -1,6 +1,6 @@
 import { GameQuery } from "@/App";
 import useData from "./useData";
-import { Genres } from "@/hooks/useGenres";
+
 export interface Platform {
   id: number;
   name: string;
