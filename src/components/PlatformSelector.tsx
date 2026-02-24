@@ -17,6 +17,7 @@ const PlatformSelector = ({onSelectPlatform, selectedPlatform}: Props) => {
     <Listbox value={selectedPlatform ?? undefined} onChange={onSelectPlatform}>
       <ListboxButton as={Button} variant="surface">
         {selectedPlatform?.name || 'Platforms'}
+        {/* @ts-ignore */}
         <BsChevronDown/>
       </ListboxButton>
       

@@ -46,7 +46,7 @@ const PlatformIconList = ({ platforms }: Props) => {
         return (
           <Icon
             key={platform.id}
-            as={IconComponent}
+            as={IconComponent as any}
             color="gray.500"
             fontSize="2xl"
           />

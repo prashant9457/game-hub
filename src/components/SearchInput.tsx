@@ -13,6 +13,7 @@ const SearchInput = ({onSearch}: Props) => {
         event.preventDefault();
         if(ref.current) onSearch(ref.current.value);
     }}>
+        {/* @ts-ignore */}
         <InputGroup startElement={<BsSearch />}>
           <Input ref={ref} borderRadius="full" placeholder="Search games..." />
         </InputGroup>

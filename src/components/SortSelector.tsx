@@ -24,6 +24,7 @@ const SortSelector = ({onSelectSortOrder, sortOrder}: Props) => {
     <Listbox>
       <ListboxButton as={Button} variant="surface">
         Order by: {currentSortOrder?.label || 'Relevance'}
+        {/* @ts-ignore */}
         <BsChevronDown/>
       </ListboxButton>
       
