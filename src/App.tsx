@@ -3,7 +3,7 @@ import { useState } from "react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
-import { Genres } from "./hooks/useGenres";
+import { Genres } from "@/hooks/useGenres";
 import { Platform } from "./hooks/useGames";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
