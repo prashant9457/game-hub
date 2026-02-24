@@ -22,7 +22,7 @@ const ColorModeSwitch = () => {
         <Switch.HiddenInput />
         <Switch.Control />
       </Switch.Root>
-      <Text>{colorMode === "dark" ? "Dark" : "Light"} Mode</Text>
+      <Text whiteSpace='nowrap'>{colorMode === "dark" ? "Dark" : "Light"} Mode</Text>
     </HStack>
   );
 };
