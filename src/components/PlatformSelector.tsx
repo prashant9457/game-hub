@@ -31,7 +31,7 @@ const PlatformSelector = ({onSelectPlatform, selectedPlatform}: Props) => {
         mt={1}
         zIndex={1000}
       >
-        {data.map((platform) => (
+        {data?.results.map((platform) => (
           <ListboxOption 
             key={platform.id} 
             value={platform} 
