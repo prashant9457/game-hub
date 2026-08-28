@@ -1,7 +1,7 @@
 import usePlatforms from "@/hooks/usePlatforms";
 import { Button, Box } from "@chakra-ui/react";
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
-import { Platform } from "@/hooks/useGames";
+import { Platform } from "@/hooks/usePlatforms";
 import { BsChevronDown } from 'react-icons/bs';
 
 interface Props {
