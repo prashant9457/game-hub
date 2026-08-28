@@ -1,33 +1,55 @@
-import useGames from "@/hooks/useGames";
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import GameCard from "./GameCard";
-import GameCardSkeleton from "./GameCardSkeleton";
-import GameCardContainer from "./GameCardContainer";
 import { GameQuery } from "@/App";
+import useGames from "@/hooks/useGames";
+import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
+import React from "react";
+import GameCard from "./GameCard";
+import GameCardContainer from "./GameCardContainer";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 interface Props {
   gameQuery: GameQuery;
 }
 
 const GameGrid = ({ gameQuery }: Props) => {
-  const { data, error, isLoading } = useGames(gameQuery);
+  const {
+    data,
+    error,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  if(error) return <Text>{error.message}</Text>
+  if (error) return <Text>{error.message}</Text>;
   return (
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 4 }} padding={10} gap={6}>
+    <Box padding={10}>
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 4 }} gap={6}>
         {isLoading &&
           skeletons.map((skeleton) => (
             <GameCardContainer key={skeleton}>
               <GameCardSkeleton />
             </GameCardContainer>
           ))}
-        {data?.results.map((game) => (
-          <GameCardContainer key={game.id}>
-            <GameCard game={game} />
-          </GameCardContainer>
+        {data?.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((game) => (
+              <GameCardContainer key={game.id}>
+                <GameCard game={game} />
+              </GameCardContainer>
+            ))}
+          </React.Fragment>
         ))}
       </SimpleGrid>
-
+      {hasNextPage && (
+        <Button
+          onClick={() => fetchNextPage()}
+          disabled={isFetchingNextPage}
+          marginY={5}
+        >
+          {isFetchingNextPage ? "Loading..." : "Load More"}
+        </Button>
+      )}
+    </Box>
   );
 };
 
