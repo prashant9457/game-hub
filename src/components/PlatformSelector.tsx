@@ -1,27 +1,36 @@
 import usePlatforms from "@/hooks/usePlatforms";
 import { Button, Box } from "@chakra-ui/react";
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
 import { Platform } from "@/hooks/usePlatforms";
-import { BsChevronDown } from 'react-icons/bs';
+import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
-  onSelectPlatform : (platform: Platform) => void;
-  selectedPlatform : Platform | null;
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatformId?: number;
 }
 
-const PlatformSelector = ({onSelectPlatform, selectedPlatform}: Props) => {
+const PlatformSelector = ({
+  onSelectPlatform,
+  selectedPlatformId,
+}: Props) => {
   const { data, error } = usePlatforms();
-  if(error) return null;
+  const selectedPlatform = data?.results.find(p => p.id === selectedPlatformId);
+  if (error) return null;
 
   return (
     <Listbox value={selectedPlatform ?? undefined} onChange={onSelectPlatform}>
       <ListboxButton as={Button} variant="surface">
-        {selectedPlatform?.name || 'Platforms'}
+        {selectedPlatform?.name || "Platforms"}
         {/* @ts-ignore */}
-        <BsChevronDown/>
+        <BsChevronDown />
       </ListboxButton>
-      
-      <ListboxOptions 
+
+      <ListboxOptions
         as={Box}
         anchor="bottom start"
         bg="bg.panel"
@@ -32,16 +41,16 @@ const PlatformSelector = ({onSelectPlatform, selectedPlatform}: Props) => {
         zIndex={1000}
       >
         {data?.results.map((platform) => (
-          <ListboxOption 
-            key={platform.id} 
-            value={platform} 
+          <ListboxOption
+            key={platform.id}
+            value={platform}
             as={Box}
             p={2}
             borderRadius="sm"
             cursor="pointer"
             _hover={{ bg: "bg.muted" }}
-            css={{ 
-              "&[data-selected]": { fontWeight: "bold" }
+            css={{
+              "&[data-selected]": { fontWeight: "bold" },
             }}
           >
             {platform.name}
