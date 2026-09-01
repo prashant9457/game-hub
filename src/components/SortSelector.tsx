@@ -1,22 +1,23 @@
 import usePlatforms from "@/hooks/usePlatforms";
+import useGameQueryStore from "@/store";
 import { Button, Box } from "@chakra-ui/react";
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
 import { BsChevronDown } from 'react-icons/bs';
 
-interface Props {
-    onSelectSortOrder: (sortOrder: string) => void;
-    sortOrder: string;
-}
-const SortSelector = ({onSelectSortOrder, sortOrder}: Props) => {
 
-    const SortOrders = [
-        {value: '' , label: 'Relevance'},
-        {value: '-added' , label: 'Date added'},
-        {value: 'name' , label: 'Name'},
-        {value: '-released' , label: 'Release date'},
-        {value: '-metacritic' , label: 'Popularity'},
-        {value: '-rating' , label: 'Average Rating'}
-    ]
+const SortSelector = () => {
+
+  const SortOrders = [
+      {value: '' , label: 'Relevance'},
+      {value: '-added' , label: 'Date added'},
+      {value: 'name' , label: 'Name'},
+      {value: '-released' , label: 'Release date'},
+      {value: '-metacritic' , label: 'Popularity'},
+      {value: '-rating' , label: 'Average Rating'}
+  ]
+
+  const sortOrder = useGameQueryStore(s => s.gameQuery.sortOrder);
+  const setSortOrder = useGameQueryStore(s => s.setSortOrder);
   const { data, error } = usePlatforms();
   if(error) return null;
     const currentSortOrder = SortOrders.find(order => order.value === sortOrder);
@@ -40,7 +41,7 @@ const SortSelector = ({onSelectSortOrder, sortOrder}: Props) => {
       >
         {SortOrders.map((order) => (
             <ListboxOption 
-            onClick={() => onSelectSortOrder(order.value)}
+            onClick={() => setSortOrder(order.value)}
             key={order.value} value={order.value}
             as={Box}
             p={2}

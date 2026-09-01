@@ -9,22 +9,22 @@ import {
 import { Platform } from "@/hooks/usePlatforms";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatform from "@/hooks/usePlatform";
+import useGameQueryStore from "@/store";
 
-interface Props {
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatformId?: number;
-}
 
-const PlatformSelector = ({
-  onSelectPlatform,
-  selectedPlatformId,
-}: Props) => {
+const PlatformSelector = () => {
   const { data, error } = usePlatforms();
+  const setSelectedPlatformId = useGameQueryStore(s => s.setPlatformId);
+  const selectedPlatformId = useGameQueryStore(s => s.gameQuery.platformId);
+
   const selectedPlatform = usePlatform(selectedPlatformId);
   if (error) return null;
 
   return (
-    <Listbox value={selectedPlatform ?? undefined} onChange={onSelectPlatform}>
+    <Listbox
+      value={selectedPlatform ?? undefined}
+      onChange={(platform) => setSelectedPlatformId(platform?.id ?? undefined)}
+    >
       <ListboxButton as={Button} variant="surface">
         {selectedPlatform?.name || "Platforms"}
         {/* @ts-ignore */}
