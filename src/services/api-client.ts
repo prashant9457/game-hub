@@ -1,4 +1,3 @@
-import { Game } from "@/entities/Game";
 import axios, { AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {

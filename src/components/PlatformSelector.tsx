@@ -6,7 +6,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
-import { Platform } from "@/entities/Platform";
+import  Platform from "@/entities/Platform";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatform from "@/hooks/usePlatform";
 import useGameQueryStore from "@/store";

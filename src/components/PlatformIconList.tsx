@@ -1,4 +1,4 @@
-import { Platform } from "@/entities/Platform";
+import Platform from "@/entities/Platform";
 import { HStack, Icon } from "@chakra-ui/react";
 //LETS IMPORT TONS OF ICONS FROM REACT ICONS...
 import { IconType } from "react-icons";
@@ -9,7 +9,7 @@ import {
   FaLinux,
   FaPlaystation,
   FaWindows,
-  FaXbox,
+  FaXbox
 } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
