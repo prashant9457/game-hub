@@ -1,4 +1,4 @@
-import { Platform } from "@/hooks/usePlatforms";
+import { Platform } from "@/entities/Platform";
 import { HStack, Icon } from "@chakra-ui/react";
 //LETS IMPORT TONS OF ICONS FROM REACT ICONS...
 import { IconType } from "react-icons";
@@ -37,7 +37,7 @@ const PlatformIconList = ({ platforms }: Props) => {
   };
 
   return (
-    <HStack marginY={5} marginX={7} >
+    <HStack marginY={5} marginX={7}>
       {platforms.map((platform) => {
         const IconComponent = iconMap[platform.slug];
 

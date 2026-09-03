@@ -1,4 +1,4 @@
-import { Game } from "@/hooks/useGames";
+import { Game } from "@/entities/Game";
 import axios, { AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {

@@ -6,16 +6,15 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
-import { Platform } from "@/hooks/usePlatforms";
+import { Platform } from "@/entities/Platform";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatform from "@/hooks/usePlatform";
 import useGameQueryStore from "@/store";
 
-
 const PlatformSelector = () => {
   const { data, error } = usePlatforms();
-  const setSelectedPlatformId = useGameQueryStore(s => s.setPlatformId);
-  const selectedPlatformId = useGameQueryStore(s => s.gameQuery.platformId);
+  const setSelectedPlatformId = useGameQueryStore((s) => s.setPlatformId);
+  const selectedPlatformId = useGameQueryStore((s) => s.gameQuery.platformId);
 
   const selectedPlatform = usePlatform(selectedPlatformId);
   if (error) return null;

@@ -1,29 +1,29 @@
-import { Game } from "@/hooks/useGames"
-import { Card , Image, Text, HStack} from "@chakra-ui/react"
-import PlatformIconList from "./PlatformIconList"
-import CriticScore from "./CriticScore"
-import getCroppedImageUrl from "@/services/image-url"
-import { Link } from "react-router-dom"
+import { Game } from "@/entities/Game";
+import { Card, Image, Text, HStack } from "@chakra-ui/react";
+import PlatformIconList from "./PlatformIconList";
+import CriticScore from "./CriticScore";
+import getCroppedImageUrl from "@/services/image-url";
+import { Link } from "react-router-dom";
 interface Props {
-    game : Game
+  game: Game;
 }
-const GameCard = ({game} : Props) => {
+const GameCard = ({ game }: Props) => {
   return (
     <Card.Root>
-        <Image src={getCroppedImageUrl(game.background_image)}></Image>
-        <Card.Body>
-            <HStack justifyContent={"space-between"}>
-              <PlatformIconList platforms={game.parent_platforms.map(p => p.platform)}></PlatformIconList>
-              <CriticScore score ={game.metacritic}></CriticScore>
-            </HStack>
-            <Card.Header fontSize='3xl' paddingY={0}>
-              <Link to={'/games/' + game.slug}>
-              {game.name}
-              </Link>
-            </Card.Header>
-        </Card.Body>
+      <Image src={getCroppedImageUrl(game.background_image)}></Image>
+      <Card.Body>
+        <HStack justifyContent={"space-between"}>
+          <PlatformIconList
+            platforms={game.parent_platforms.map((p) => p.platform)}
+          ></PlatformIconList>
+          <CriticScore score={game.metacritic}></CriticScore>
+        </HStack>
+        <Card.Header fontSize="3xl" paddingY={0}>
+          <Link to={"/games/" + game.slug}>{game.name}</Link>
+        </Card.Header>
+      </Card.Body>
     </Card.Root>
-  )
-}
+  );
+};
 
-export default GameCard
+export default GameCard;
